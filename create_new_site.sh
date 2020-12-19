@@ -1,3 +1,7 @@
+# TEMPORARY: Delete old version
+sudo rm -rf src
+# =================================================================
+
 hugo_version="0.79.0"
 theme="hugo-future-imperfect"
 
@@ -14,4 +18,6 @@ docker container run --rm -it \
 
 # Copy theme using hard links.Theme already has to be cloned 
 # into a shared themes folder.
- cp -lr themes/${theme} src/${theme}
+sudo cp -lr themes/${theme} src/themes/${theme}
+# Append theme name to config
+echo theme = \"${theme}\" | sudo tee -a src/config.toml
