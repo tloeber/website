@@ -2,8 +2,8 @@
 sudo rm -rf src
 # =================================================================
 
-hugo_version="0.79.0"
-theme="hugo-future-imperfect"
+hugo_version="0.79.1"
+theme="hugo-future-imperfect" 
 
 # To make sure that relative paths work
 cd ~/projects/website
@@ -16,8 +16,11 @@ docker container run --rm -it \
   klakegg/hugo:${hugo_version} \
   new site .
 
-# Copy theme using hard links.Theme already has to be cloned 
-# into a shared themes folder.
-sudo cp -lr themes/${theme} src/themes/${theme}
-# Append theme name to config
-echo theme = \"${theme}\" | sudo tee -a src/config.toml
+# Copy theme using hard links.Theme already has to be cloned  into a shared themes folder. 
+# Don't copy exampleSite. 
+cd themes/${theme} && \
+  sudo cp -lr archetypes  images  layouts  LICENSE.md  README.md  static  theme.toml  ../../src/themes/${theme} && \
+  cd ../..
+
+sudo cp configs/config.toml src/
+
