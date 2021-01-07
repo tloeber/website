@@ -1,3 +1,8 @@
+#!/bin/sh
+# Keep longer content that we want to keep separate from version control in text files.
+about=$(cat content/about.txt)
+
+cat << EOF
 baseurl = "/"
 languageCode = "en-us"
 title = "Thomas Loeber"
@@ -91,10 +96,8 @@ canonifyURLs = true
 
   paragraph = "Welcome to my personal website!"
 
-  about     = "Software developer focusing on AWS and python. Strong background in machine learning, statistics, and data wrangling. Passionate about using software development best practices to build maintainable software solutions. Experienced in leveraging Agile methodologies to develop better products and to create a better working environment. I help innovative companies capitalize on their data to improve the lives of their customers and to stay ahead of the curve.
-
-My main interests all revolve around the digital transformation: From the new technical challenges and opportunities to the wider implications for our economy, and how companies need to fundamentally rethink the way they do business in order to thrive in this new economic reality."
-
+  about     = "$about"
+   
   # This appears at the top of the sidebar above params.intro.header.
   # A width of less than 100px ims recommended from a design perspective.
   [params.intro.pic]
@@ -167,7 +170,7 @@ My main interests all revolve around the digital transformation: From the new te
   # dribbble         = ""
   # # Publishing Communities
   # wordpress        = ""
-  medium           = "@thomas.loeber73"
+  medium           = "thomas.loeber73"
   
   # Professional/Business Oriented Communities
   linkedin         = "thomas-loeber"
@@ -201,3 +204,4 @@ My main interests all revolve around the digital transformation: From the new te
   
   # Email
   email            = "thomas.loeber73+ws@gmail.com"
+EOF
