@@ -10,6 +10,7 @@ cd ~/projects/website
 
 # Create directory where applicatiion files will be located.
 # Note that the name "src" is hardcoded into Klakegg's docker image.
+# Eventually we want to move to a docker volume instead.
 mkdir src
 docker container run --rm -it \
   -v $(pwd)/src:/src \
@@ -24,7 +25,7 @@ sudo mkdir src/themes/${theme} && \
   cd themes/${theme} && \
   sudo cp -r archetypes  images  layouts  LICENSE.md  README.md  static  theme.toml  ../../src/themes/${theme} && \
   cd ../..
-# Use customized config from configs directory
+# Create customized config 
 bash configs/create_config.sh | sudo tee src/config.toml > /dev/null
 
 
