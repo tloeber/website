@@ -1,6 +1,6 @@
 #!/bin/sh
 # Keep longer content that we want to keep separate from version control in text files.
-about=$(cat content/about.txt)
+about=$(cat configs/content/about.txt)
 
 cat << EOF
 baseurl = "/"
