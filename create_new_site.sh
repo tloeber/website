@@ -25,9 +25,12 @@ sudo mkdir src/themes/${theme} && \
   cd themes/${theme} && \
   sudo cp -r archetypes  images  layouts  LICENSE.md  README.md  static  theme.toml  ../../src/themes/${theme} && \
   cd ../..
+  
 # Create customized config 
 bash configs/create_config.sh | sudo tee src/config.toml > /dev/null
 
+# Create templates for content headers
+bash create_content_headers.sh
 
 # # =================================================================
 # # TEMPORARY

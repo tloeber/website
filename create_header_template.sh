@@ -1,6 +1,8 @@
 hugo_version="0.79.0"
 file_name="header_template.md"
-prefixes=("." "blog")
+# Create a template for each item in the navigation bar that
+# returns a 404 error. (Everything except "categories")
+prefixes=("." "about" "blog" "itemized" "contact")
 
 # So that relative paths work
 cd ~/projects/website
