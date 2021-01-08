@@ -16,11 +16,39 @@ docker container run --rm -it \
   klakegg/hugo:${hugo_version} \
   new site .
 
-# Copy theme using hard links.Theme already has to be cloned  into a shared themes folder. 
-# Don't copy exampleSite. 
-cd themes/${theme} && \
-  sudo cp -lr archetypes  images  layouts  LICENSE.md  README.md  static  theme.toml  ../../src/themes/${theme} && \
+# Copy theme from the themes folder in the base directory (where themes are
+# permanently stored so they don't have to be re-downloaded) to the docker 
+# volume/bind mount (src/themes). Don't copy themes/exampleSite. 
+# TODO: Find out if any other subfolders of themes don't need to be copied.
+sudo mkdir src/themes/${theme} && \
+  cd themes/${theme} && \
+  sudo cp -r archetypes  images  layouts  LICENSE.md  README.md  static  theme.toml  ../../src/themes/${theme} && \
   cd ../..
+# Use customized config from configs directory
+bash configs/create_config.sh | sudo tee src/config.toml > /dev/null
 
-sudo cp configs/config.toml src/
 
+# # =================================================================
+# # TEMPORARY
+# section_name="blog"
+# post_name="test_post"
+# format="md"
+
+# # Create test post
+# docker container run --rm -it \
+#   -v $(pwd)/src:/src \
+#   klakegg/hugo:${hugo_version} \
+#   new "${section_name}/${post_name}.${format}"
+
+# # Give user write access to content, so that they can 
+# # easily edit markdown files directly.
+# sudo chown $(whoami):$(whoami) "src/content/${section_name}/${post_name}.${format}"
+
+# echo "testing."| tee -a "src/content/${section_name}/${post_name}.${format}" 
+ 
+# # Start server
+# docker container run --rm -it \
+#   -v $(pwd)/src:/src \
+#   -p 1313:1313 \
+#   klakegg/hugo:${hugo_version} \
+#   server -wD -d "dev"

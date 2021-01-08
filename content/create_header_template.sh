@@ -14,18 +14,13 @@ for prefix in "${prefixes[@]}"; do
   rm -f "src/content/${relative_path}" 
   rm -f "content/${relative_path}" 
 
-  # This creates the header template
+  # This creates the header template. Note we attach the content
+  # directory as a bind mount, so templates get permanently stored there
   docker container run --rm -it \
     -v $(pwd)/src:/src \
+    -v $(pwd)/content:/src/content \
     klakegg/hugo:${hugo_version} \
     new "$relative_path"
-    
-  ## Store header template in *permanent* content directory
-  # Create subdirectory first, if it doesn't exist
-  if [ ! -d "content/${prefix}" ]; then
-    mkdir -p "content/${prefix}";
-  fi
-  sudo mv "src/content/${relative_path}" "content/${relative_path}"
 
   # Give user write access to content.
   sudo chown $(whoami):$(whoami) "content/${relative_path}"
