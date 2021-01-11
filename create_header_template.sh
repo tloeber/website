@@ -16,11 +16,14 @@ for prefix in "${prefixes[@]}"; do
   rm -f "src/content/${relative_path}" 
   rm -f "content/${relative_path}" 
 
-  # This creates the header template. Note we attach the content
-  # directory as a bind mount, so templates get permanently stored there
+  # This creates the header template. Note we don't attach the usual content 
+  # directory. The directory attach will only contain the templates and won't 
+  # get attached when we run the server, because it will contain any actual content.
+  mkdir content_headers
+
   docker container run --rm -it \
     -v $(pwd)/src:/src \
-    -v $(pwd)/content:/src/content \
+    -v $(pwd)/content_headers:/src/content \
     klakegg/hugo:${hugo_version} \
     new "$relative_path"
 
