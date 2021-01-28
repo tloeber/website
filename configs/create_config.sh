@@ -1,8 +1,13 @@
 #!/bin/sh
-# Keep longer content that we want to keep separate from version control in text files.
-about=$(cat configs/content/about.txt)
+
+# To make sure that relative paths work
+cd ~/projects/website
+
+# Goal: Keep longer content that we want to keep separate from version control in text files.
+about="$(cat configs/content/about.txt)"
 
 cat << EOF
+
 baseurl = "/"
 languageCode = "en-us"
 title = "Thomas Loeber"
@@ -204,4 +209,5 @@ canonifyURLs = true
   
   # Email
   email            = "thomas.loeber73+ws@gmail.com"
+
 EOF

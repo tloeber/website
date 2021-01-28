@@ -26,7 +26,8 @@ sudo mkdir src/themes/${theme} && \
   sudo cp -r archetypes  images  layouts  LICENSE.md  README.md  static  theme.toml  ../../src/themes/${theme} && \
   cd ../..
 
-# Create customized config 
+# This creates config by combining a template with content (separated to distinguish
+# proper config changes from content changes).
 bash configs/create_config.sh | sudo tee src/config.toml > /dev/null
 
 # Create templates for content headers
