@@ -1,7 +1,7 @@
 hugo_version="0.79.0"
 file_name="header_template.md"
 # Create a template for each item in the navigation bar that
-# returns a 404 error. (Everything except "categories")
+# returns a 404 error otherwise. (Everything except "categories")
 prefixes=("." "about" "blog" "itemized" "contact")
 
 # So that relative paths work
@@ -17,8 +17,8 @@ for prefix in "${prefixes[@]}"; do
   rm -f "content/${relative_path}" 
 
   # This creates the header template. Note we don't attach the usual content 
-  # directory. The directory attach will only contain the templates and won't 
-  # get attached when we run the server, because it will contain any actual content.
+  # directory. The directory attached will only contain the templates and won't 
+  # get attached when we run the server, because it won't contain any actual content.
   mkdir content_headers
 
   docker container run --rm -it \

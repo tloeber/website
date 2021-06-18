@@ -1,9 +1,12 @@
 #!/bin/sh
 
+# HEREDOC
+# Goal: Keep longer content that we want to keep separate from version control in text files.
+
 # To make sure that relative paths work
 cd ~/projects/website
 
-# Goal: Keep longer content that we want to keep separate from version control in text files.
+# Content to insert
 about="$(cat configs/content/about.txt)"
 
 cat << EOF
