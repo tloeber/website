@@ -1,0 +1,4 @@
+# Ignore dev/ folder
+dev/
+# Ignore public/ folder
+public/
