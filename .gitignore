@@ -1,4 +1,11 @@
-# Ignore dev/ folder
+# Ignore non-codedirectories
 dev/
-# Ignore public/ folder
 public/
+configs/
+content/
+content.bak/
+content_headers/
+img/
+old/
+src/
+themes/
