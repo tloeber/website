@@ -12,22 +12,25 @@ cd ~/projects/website
 for prefix in "${prefixes[@]}"; do
   relative_path="${prefix}/${file_name}"
 
-  # Remove previous versions, if any
-  rm -f "src/content/${relative_path}" 
-  rm -f "content/${relative_path}" 
+  # # Remove previous versions, if any
+  cd content && \
+    sudo rm -rf "$relative_path" && \
+    cd ../
 
   # This creates the header template. Note we don't attach the usual content 
   # directory. The directory attached will only contain the templates and won't 
   # get attached when we run the server, because it won't contain any actual content.
-  mkdir content_headers
-
   docker container run --rm -it \
     -v $(pwd)/src:/src \
-    -v $(pwd)/content_headers:/src/content \
+    -v $(pwd)/content:/src/content \
     klakegg/hugo:${hugo_version} \
     new "$relative_path"
 
-  # Give user write access to content.
-  sudo chown $(whoami):$(whoami) "content/${relative_path}"
+  # Give user write access to content. (Since one prefix consists of just ".",
+  # we first cd into "content" rather than concatenating everything)
+  cd content && \
+    sudo chown $(whoami):$(whoami) "${relative_path}" && \
+    cd ../
+
 
 done
