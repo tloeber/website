@@ -19,9 +19,7 @@ for prefix in "${prefixes[@]}"; do
     sudo rm -rf "$relative_path" && \
     cd ../
 
-  # This creates the header template. Note we don't attach the usual content 
-  # directory. The directory attached will only contain the templates and won't 
-  # get attached when we run the server, because it won't contain any actual content.
+  # This creates the header template. 
   docker container run --rm -it \
     -v $(pwd)/src:/src \
     -v $(pwd)/content:/src/content \
