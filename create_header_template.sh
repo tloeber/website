@@ -10,6 +10,8 @@ cd ~/projects/website
 # The automatically created headers differ based on prefix 
 # (e.g., blog). That's why we create separate template header for each.
 for prefix in "${prefixes[@]}"; do
+  # Have to use relative path, so it works both from Docker container,
+  # as well as directly from file system.
   relative_path="${prefix}/${file_name}"
 
   # # Remove previous versions, if any
