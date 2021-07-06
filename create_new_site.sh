@@ -12,6 +12,7 @@ sudo rm -rf src && \
   mkdir src  # rm -rf src/* wouldn't delete hidden files
 docker container run --rm -it \
   -v $(pwd)/src:/src \
+  -v $(pwd)/img:/static/img/ \
   klakegg/hugo:${hugo_version} \
   new site .
 
@@ -30,4 +31,4 @@ sudo mkdir src/themes/${theme} && \
 bash configs/create_config.sh | sudo tee src/config.toml > /dev/null
 
 # Create templates for content headers
-bash create_header_template.sh
+# bash create_header_template.sh

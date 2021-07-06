@@ -109,13 +109,11 @@ canonifyURLs = true
   # This appears at the top of the sidebar above params.intro.header.
   # A width of less than 100px ims recommended from a design perspective.
   [params.intro.pic]
-    src       = "/img/Thomas_Loeber.jpg"
+    src       = "/img/main/Thomas_Loeber_resized.jpg"
     # Sets Image to be a cirlce
-    circle    = false
-    # Sets Image to be Future Imperfect's hexagon
-    imperfect = true
+    circle    = true
     width     = ""
-    alt       = "Hugo Future Imperfect"
+    alt       = "Thomas Loeber jpg3"
 
 [params.postAmount]
 # Sets the number of recent posts to show in the sidebar. The default value is 5.

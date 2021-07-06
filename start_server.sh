@@ -8,12 +8,13 @@ cd ~/projects/website/
 #   but we don't ever want to automatically delete content. Keeping
 #   content separate reduces the risk of accidentally overwriting it.
 # - We eventually want to make the main src volume a docker volume.
-#   However, we will continue using a bind mount for content, since
+#   However, we will continue using a bind mount for content and images, since
 #   we will keep editing this from outside of docker.
 docker container run --rm -it \
   -v $(pwd)/src:/src \
   -v $(pwd)/content:/src/content \
-  -v $(pwd)/img:/src/img \
+  -v $(pwd)/img:/static/img/ \
   -p 1313:1313 \
+  --name hugo_website \
   klakegg/hugo:${hugo_version} \
   server -D  # -d "dev
